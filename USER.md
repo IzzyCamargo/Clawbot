@@ -6,7 +6,7 @@
 - **What to call them:** Lord Israel
 - **Pronouns:** *(optional)*
 - **Timezone:** America/Fortaleza (GMT-3)
-- **Notes:** 
+- **Notes:** Prefere português do Brasil.
 
 ## Context
 
