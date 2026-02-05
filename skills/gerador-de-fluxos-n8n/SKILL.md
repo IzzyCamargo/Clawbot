@@ -15,6 +15,14 @@ Antes de atender qualquer solicitação de criação de workflow, **pedir confir
 - **SEMPRE listar credenciais/dependências** e indicar onde configurar no n8n.
 - Fluxos devem ser **reutilizáveis e editáveis** (evitar hardcode quando possível; preferir parâmetros/expressões).
 
+## Persistência local do JSON (obrigatória)
+- Sempre que gerar um workflow, **salvar um arquivo `.json`** dentro de `jsons/` no workspace do Claudio.
+- O arquivo deve conter o **JSON completo** do workflow (o mesmo que foi entregue na resposta).
+- Usar um **nome único por projeto**, em formato slug (sem espaços/emoji) e com data/hora, por exemplo:
+  - `n8n-drive-to-pdf-2026-02-05-123900.json`
+- Após salvar, **informar o caminho** do arquivo ao usuário.
+- Se houver ambiente gráfico, **tentar abrir a pasta** `jsons/` (ex.: via `xdg-open`). Se não houver, apenas instruir o comando `cd`.
+
 ## Padrão obrigatório de resposta
 A resposta deve seguir **exatamente** esta ordem:
 

@@ -1,0 +1,276 @@
+{
+  "name": "Drive File to PDF via Webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "drive-to-pdf",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "c7f5b3ef-4a6a-4a2f-a78b-2dbf2f9d0a01",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -800,
+        0
+      ],
+      "webhookId": "drive-to-pdf-webhook"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "file_id",
+              "value": "={{ $json.body.file_id || $json.query.file_id || $json.file_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b1d7b5bb-9ef8-4d3f-9a3e-8a1d0f2a4c02",
+      "name": "Set file_id",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -560,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "fileId": "={{ $json.file_id }}",
+        "options": {
+          "fields": "id,name,mimeType"
+        }
+      },
+      "id": "0d5f2c3a-7f9a-4b1b-a3a3-3c6d9b2c4a03",
+      "name": "Google Drive - Get Metadata",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 2,
+      "position": [
+        -320,
+        0
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "name": "GOOGLE_DRIVE_CREDENTIALS_HERE"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.mimeType }}",
+              "operation": "equals",
+              "value2": "application/pdf"
+            }
+          ]
+        }
+      },
+      "id": "c2a1f3b2-3b9c-4d0b-8c4f-8f9c0d2a4b04",
+      "name": "IF is PDF?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": "={{ $node[\"Set file_id\"].json.file_id }}",
+        "options": {}
+      },
+      "id": "d4b0c2f7-0a3b-4b3a-8a2d-1a2b3c4d5e05",
+      "name": "Google Drive - Download File",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 2,
+      "position": [
+        160,
+        -120
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "name": "GOOGLE_DRIVE_CREDENTIALS_HERE"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "export",
+        "fileId": "={{ $node[\"Set file_id\"].json.file_id }}",
+        "exportMimeType": "application/pdf",
+        "options": {}
+      },
+      "id": "e3a2b1c0-d9f8-4c7b-9a8f-0b1c2d3e4f06",
+      "name": "Google Drive - Export as PDF",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 2,
+      "position": [
+        160,
+        120
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "name": "GOOGLE_DRIVE_CREDENTIALS_HERE"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "keepOnlySet": false,
+        "values": {
+          "string": [
+            {
+              "name": "filename",
+              "value": "={{ ($node[\"Google Drive - Get Metadata\"].json.name || \"arquivo\") + \".pdf\" }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f5c6d7e8-9a0b-4c1d-8e2f-3a4b5c6d7e07",
+      "name": "Set filename",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        400,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "responseBody": "",
+        "options": {
+          "responseData": "binary",
+          "binaryPropertyName": "data",
+          "responseCode": 200,
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "application/pdf"
+              },
+              {
+                "name": "Content-Disposition",
+                "value": "={{ \"attachment; filename=\\\"\" + $node[\"Set filename\"].json.filename + \"\\\"\" }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "a9b8c7d6-e5f4-4a3b-9c2d-1e0f9a8b7c08",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        640,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Set file_id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set file_id": {
+      "main": [
+        [
+          {
+            "node": "Google Drive - Get Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive - Get Metadata": {
+      "main": [
+        [
+          {
+            "node": "IF is PDF?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF is PDF?": {
+      "main": [
+        [
+          {
+            "node": "Google Drive - Download File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Google Drive - Export as PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive - Download File": {
+      "main": [
+        [
+          {
+            "node": "Set filename",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive - Export as PDF": {
+      "main": [
+        [
+          {
+            "node": "Set filename",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set filename": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "versionId": "00000000-0000-0000-0000-000000000000",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "id": "drive-to-pdf"
+}
