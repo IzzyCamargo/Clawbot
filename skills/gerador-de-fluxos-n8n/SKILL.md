@@ -40,3 +40,4 @@ A resposta deve seguir **exatamente** esta ordem:
 
 ## Referências
 - Para padrões de estrutura e exemplos reais do seu ambiente (LangChain nodes, memory, Supabase/Postgres, módulos), ler: `references/padroes-n8n.md`.
+- Comunidade n8n (para pesquisar casos/erros comuns e boas práticas): https://community.n8n.io/

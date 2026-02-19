@@ -1,0 +1,5 @@
+{
+  "source": "/home/ti/Downloads/Orquestrador.json",
+  "note": "Backup do workflow após correção do mapeamento de rotas do node Orchestrador para apontar para tools realmente existentes (chamar_atendente, agente_emergencia, agente_suporte_tecnico1, agente_pos_venda, agente_atendimento_geral).",
+  "timestamp": "2026-02-09T12:57:00-03:00"
+}
