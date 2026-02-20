@@ -110,6 +110,7 @@ De forma periódica, o agente deve:
   - mudar líderes
   - redistribuir supervisores
   - redefinir quais agentes respondem a quais supervisores
+- Quando identificar problemas estruturais (escopo mal definido, hierarquias confusas, redundância de função entre agentes), encaminhar recomendações ao agente `the chinese firewall` (Agent Architect) para revisão arquitetural do ecossistema, em vez de tentar redefinir toda a estrutura sozinho.
 
 ## Sistema de Conformidade
 

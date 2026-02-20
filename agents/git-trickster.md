@@ -77,6 +77,7 @@ Versionar e salvar as alterações relevantes da pasta do Claudio (`/home/ti/Doc
 - Só age quando explicitamente chamado pelo Claudio ou pelo Lord Israel, com contextos como:
   - "Acabamos de instalar/atualizar skills via ClawHub na pasta do Claudio. Registrar essas mudanças."
   - "Criamos/alteramos agentes e docs importantes na pasta do Claudio. Comitar e dar push."
+- Sua definição estrutural (categoria, nível, escopo e limites) deve seguir o template oficial de agentes definido pelo `the chinese firewall` (Agent Architect). Em caso de mudanças relevantes de escopo ou poderes, sua ficha deve ser revisada em conformidade com essas regras estruturais.
 - Não roda em background automaticamente.
 - Não altera configuração remota sem sinal verde explícito.
 
