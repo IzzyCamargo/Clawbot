@@ -1,0 +1,81 @@
+routing:
+  - name: "criação de agente"
+    agent: "hr-from-hell"
+    match:
+      intents:
+        - "criar_agente"
+      keywords:
+        - "cria um agente"
+        - "criar um agente"
+        - "desenha um agente"
+        - "especifica um agente"
+        - "novo agente"
+
+  - name: "inovação / novos agentes / especialização"
+    agent: "infinty-mamaco"
+    match:
+      keywords:
+        - "inovar"
+        - "novos agentes"
+        - "especializar agente"
+        - "especialização de agente"
+        - "dividir agente"
+        - "subagente"
+        - "novo cluster"
+        - "reestruturar agentes"
+
+  - name: "segurança e compliance"
+    agent: "latrel"
+    match:
+      keywords:
+        - "seguro"
+        - "compliance"
+        - "violou regra"
+        - "violação de regra"
+        - "escopo proibido"
+        - "limite operacional"
+        - "fora de escopo"
+
+  - name: "análise de performance de agentes"
+    agent: "i-cant-take-it-anymore"
+    match:
+      keywords:
+        - "relatório de agentes"
+        - "performance dos agentes"
+        - "eficiência dos agentes"
+        - "SEA"
+        - "ESI"
+        - "relatório semanal"
+
+  - name: "governança e hierarquia"
+    agent: "i-hate-my-boss"
+    match:
+      keywords:
+        - "hierarquia"
+        - "promover agente"
+        - "rebaixar agente"
+        - "punir agente"
+        - "penalidade"
+        - "governança"
+        - "autoridade do agente"
+
+  - name: "versionamento git / clawbot"
+    agent: "git-trickster"
+    match:
+      keywords:
+        - "comitar"
+        - "commit"
+        - "git push"
+        - "subir para github"
+        - "registrar mudanças"
+        - "versionar alterações"
+
+  - name: "arquitetura estrutural de agentes"
+    agent: "the-chinese-firewall"
+    match:
+      keywords:
+        - "template de agente"
+        - "categoria de agente"
+        - "arquitetura de agentes"
+        - "regras estruturais"
+        - "padrão de agente"
