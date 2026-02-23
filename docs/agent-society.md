@@ -9,6 +9,7 @@ Agentes principais:
 - `I cant take it anymore` (Agent Analyst)
 - `I hate my boss` (chefe supremo / governança)
 - `Git Trickster` (versionamento / Git)
+- `Agent Innovator` (inovação estrutural)
 
 ---
 
@@ -20,9 +21,12 @@ flowchart TD
       A[the chinese firewall<br/>Agent Architect] --> B[HR from hell<br/>Criador de agentes]
       A --> C[Agent Security & Compliance<br/>Latrel]
       A --> D[I hate my boss]
+      A --> I[Agent Innovator]
     end
 
     subgraph Criação & Definição
+      I -->|propõe novo agente/reestruturação| B
+      I -->|propõe mudanças estruturais| A
       B -->|propõe novo agente| A
       A -->|valida template/estrutura| B
       B -->|ficha pronta| C
@@ -38,11 +42,13 @@ flowchart TD
     subgraph Análise de Dados
       G -->|logs, métricas| E
       E -->|relatórios, SEA, padrões| D
-      E -->|recomendações de novos agentes/gaps| B
+      E -->|recomendações de novos agentes/gaps| I
       E -->|evidências estruturais| A
     end
 
     subgraph Governança & Decisão
+      I -->|envia propostas| D
+      D -->|aprova propostas| B
       D -->|aprova ativação crítica| C
       D -->|ajusta hierarquia/autonomia| G
       D -->|decide penalidades estruturais| G
@@ -55,6 +61,7 @@ flowchart TD
       C -->|regras de compliance/agent YAML| H
       E -->|relatórios/metrics docs| H
       D -->|decisões estruturais| H
+      I -->|propostas registradas| H
       H -->|commit + push<br/>IzzyCamargo/Clawbot| R[GitHub]
     end
 ```
@@ -145,6 +152,21 @@ flowchart TD
   - Tem suas decisões registradas/versionadas pelo `Git Trickster`.
 
 ### 2.6. Git Trickster (versionamento)
+
+### 2.7. Agent Innovator (inovação estrutural)
+- **Camada:** Inovação / estratégia estrutural.
+- **Responsabilidades:**
+  - Detectar lacunas funcionais e oportunidades de expansão com base em dados (relatórios do Analyst, histórico do Memory Manager, sobrecarga, retrabalho, etc.).
+  - Propor novos agentes com propostas estruturadas (nome, categoria, nível, missão, justificativa, impacto, risco, cluster, integrações, métricas de sucesso).
+  - Propor especializações (divisão de agentes, criação de subagentes, camadas intermediárias).
+  - Propor reestruturações (novos clusters, camadas hierárquicas, fluxos entre agentes).
+  - Operar um laboratório experimental de agentes beta (quando autorizado), com período de teste e avaliação de impacto.
+- **Relações:**
+  - Recebe dados principalmente do `I cant take it anymore` e do Agent Memory Manager.
+  - Alinha suas propostas com `the chinese firewall` para garantir encaixe arquitetural.
+  - Envia propostas para `I hate my boss` (aprovação) e, após aprovação, para `HR from hell` (criação/reestruturação).
+  - Coordena com Latrel para considerar riscos de segurança e compliance nas propostas.
+  - Tem propostas e decisões versionadas pelo `Git Trickster`.
 - **Camada:** Infra / persistência de histórico.
 - **Responsabilidades:**
   - Versionar mudanças em `agents/*.md`, `agents/*.agent.yaml`, docs, skills etc.
