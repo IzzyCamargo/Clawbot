@@ -9,7 +9,7 @@ Agentes principais:
 - `I cant take it anymore` (Agent Analyst)
 - `I hate my boss` (chefe supremo / governança)
 - `Git Trickster` (versionamento / Git)
-- `Agent Innovator` (inovação estrutural)
+- `Infinty Mamaco` (inovação estrutural)
 
 ---
 
@@ -21,7 +21,7 @@ flowchart TD
       A[the chinese firewall<br/>Agent Architect] --> B[HR from hell<br/>Criador de agentes]
       A --> C[Agent Security & Compliance<br/>Latrel]
       A --> D[I hate my boss]
-      A --> I[Agent Innovator]
+      A --> I[Infinty Mamaco]
     end
 
     subgraph Criação & Definição
@@ -153,7 +153,7 @@ flowchart TD
 
 ### 2.6. Git Trickster (versionamento)
 
-### 2.7. Agent Innovator (inovação estrutural)
+### 2.7. Infinty Mamaco (inovação estrutural)
 - **Camada:** Inovação / estratégia estrutural.
 - **Responsabilidades:**
   - Detectar lacunas funcionais e oportunidades de expansão com base em dados (relatórios do Analyst, histórico do Memory Manager, sobrecarga, retrabalho, etc.).
